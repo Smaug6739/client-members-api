@@ -41,7 +41,7 @@ exports.statusUser = (session) => {
             userAvatar: "default.png"
         }
         return userConnected;
-    } else if (!session.user.userAvatar) {
+    } else if (!session.user.avatar) {
         userConnected = {
             auth: true,
             userPermissions: session.user.userPermissions,
@@ -51,9 +51,9 @@ exports.statusUser = (session) => {
         userConnected = {
             auth: true,
             userPermissions: session.user.userPermissions,
-            userAvatar: session.user.userAvatar
+            userAvatar: session.user.avatar
         }
     }
-    return userConnected;;
+    return userConnected;
 
 }

@@ -65,6 +65,7 @@ exports.postLogin = (req, res) => {
         password: req.body.pass
     })
         .then(responce => {
+            console.log(responce)
             if (responce.data.status === "success") {
                 req.session.user = {
                     userID: responce.data.result.user.id,
@@ -146,11 +147,11 @@ exports.updateMember = (req, res) => {
     axios.put(`${config.api.baseURL}members/${req.params.id}`, {
         pseudo: req.body.pseudo || "",
         avatar: file || "",
-        firstName: req.body.firstName || "",
-        lastName: req.body.lastName || "",
+        first_name: req.body.firstName || "",
+        last_name: req.body.lastName || "",
         age: req.body.age || "",
         email: req.body.email || "",
-        phoneNumber: req.body.phoneNumber || ""
+        phone_number: req.body.phoneNumber || ""
     },
         {
             headers: { 'Authorization': `${req.session.user.userID} ${req.session.user.token}` },
