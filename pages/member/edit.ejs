@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link  rel="stylesheet" href="/static/css/main.css">
+    <link  rel="stylesheet" href="/static/css/edit.css">
+    <script src="/static/js/edit.js"></script>
+    <title>API Members</title>
+  </head>
+  <body>
+    <%- include ('../include/nav.ejs'); -%>
+
+    <h1 class="mb-5 text-center">Espace membre</h1>
+
+
+  <div id="overlay1">
+    <div class="popup_block">
+        <a class="close" href="#noWhere"><img alt="Fermer" title="Fermer la fenêtre" class="btn_close" src="/static/images/close_pop.png"></a>
+        <h2>Supprimer votre compte</h2>
+        <form action="/member/<%= member.userID %>/delete" method="post" class="mt-5">
+          <div class="form-group">
+            <div id="conteneur-field-start">
+              <label for="password">Mot de passe :</label>
+              <input type="text" class="form-field" id="password" name="password" >
+            </div>
+          </div>
+          <p>Attention, la supression de votre compte est définitive et iréverssible. Vous perdrez toutes les données qui y sont associés.</p>
+          <button id="button-send" type="submit" class="btn btn-danger">Supprimer</button>
+        </form>
+    </div>
+</div>
+
+<div id="account-conteneur-general">
+
+  <div class="account-infos">
+          <h2 id="center-text">Paramètres généraux</h2>
+          <form id ="form1" action="/member/<%= member.userID %>/update" method="post" enctype="multipart/form-data">
+              <div class="form-group">
+                  <label for="firstName">Nom d'utilisateur :</label>
+                  <input type="text" class="form-field" id="firstName" name="firstName" placeholder="Prénom" value="<%= member.first_name %>" >
+                  <input  type="text" class="form-field" id="lastName" name="lastName" placeholder="Nom" value="<%= member.last_name %>" >
+              <div>
+                    <label for="avatar">Photo de profil :</label>
+                  
+                        <img id="avatar-form" src="/uploads/avatars/<%= userConnected.userAvatar %>">
+                    
+                    <label class="custom-file-upload" for="avatar-upload">
+                      <input class="invisible" id="avatar-upload" type="file" onchange="preview_image(event)" name="avatar-upload"/>
+                      Choisir un fichier
+                  </label>
+                </div>
+                <div id="conteneur-field-start">
+                  <label for="pseudo">Pseudo :</label>
+                  <input  type="text" class="form-field" id="pseudo" name="pseudo" placeholder="Pseudo" value="<%= member.pseudo %>" >
+                </div>
+                <div id="conteneur-field-start">
+                  <label for="age">Age :</label>
+                  <input type="text" class="form-field" id="age" name="age" placeholder="Age" value="<%= member.age %>" >
+                </div>
+                <div id="conteneur-field-start">
+                  <label for="email">Adresse mail :</label>
+                  <input type="text" class="form-field" id="email" name="email" placeholder="Adresse mail" value="<%= member.email %>" >
+                </div>
+                <div id="conteneur-field-start">
+                  <label for="phoneNumber">Téléphone :</label>
+                  <input type="text" class="form-field" id="phoneNumber" name="phoneNumber" placeholder="Numéro de téléphone" value="<%= member.phone_number %>" >
+                </div>
+              </div>
+
+      <button id="button-send" type="submit" class="btn btn-primary">Modifier</button>
+      </form>
+
+      <div id="conteneur-field-start">
+        <label for="change-password">Compte :</label>
+        <p><a href="#overlay1" id="delete-account" class="btn btn-danger">Supprimer votre compte</a></p>
+      </div>
+  </div>
+
+</div>
+<br>
+<div class="account-infos">
+  <h2 id="center-text">Changer votre mot de passe</h2>
+  <form action="/member/updatepassword/<%= member.userID %>" method="post" class="mt-5">
+    <div class="form-group">
+      <div id="conteneur-field-start">
+        <label for="oldPassword">Ancien mot de passe :</label>
+        <input type="text" class="form-field" id="oldPassword" name="oldPassword" >
+      </div>
+      <div id="conteneur-field-start">
+        <label for="password1">Nouveau mot de passe :</label>
+        <input type="text" class="form-field" id="password1" name="password1" >
+      </div>
+      <div id="conteneur-field-start">
+        <label for="password2">Confirmez le mot de passe :</label>
+        <input type="text" class="form-field" id="password2" name="password2" >
+      </div>
+    </div>
+    <button id="button-send" type="submit" class="btn btn-primary">Modifier</button>
+  </form>
+</div>
+
+<%- include('../include/footer.ejs') %>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--<script type="text/javascript" src="/static/js/adminupdate.js"></script>-->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/admin/adminupdatepage.css">
+    <title>API Members</title>
+  </head>
+  <body>
+    <%- include ('../include/nav.ejs'); -%>
+    <h1 class="mb-5 text-center">Modification d'un membre</h1>
+
+    <form id ="form1" action='/admin/updatemember/<%= member.userID %>' method="post">
+        <div class="form-group">
+            <label for="pseudo">Pseudo</label>
+            <input type="text" class="form-control" id="pseudo" name="pseudo" value="<%= member.pseudo %>" >
+
+            <label for="pseudo">Nom</label>
+            <input type="text" class="form-control" id="lastName" name="lastName" value="<%= member.lastName %>" >
+            <label for="pseudo">Prénom</label>
+            <input type="text" class="form-control" id="firstName" name="firstName" value="<%= member.firstName %>" >
+            <label for="pseudo">Age</label>
+            <input type="text" class="form-control" id="age" name="age" value="<%= member.age %>" >
+            <label for="pseudo">Adresse mail</label>
+            <input type="text" class="form-control" id="email" name="email" value="<%= member.email %>" >
+            <label for="pseudo">Téléphone</label>
+            <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" value="<%= member.phoneNumber %>" >
+        </div>
+
+  <button type="submit" class="btn btn-primary">Modifier</button>
+</form>
+<div id="overlay1">
+  <div class="popup_block">
+      <a class="close" href="#noWhere"><img alt="Fermer" title="Fermer la fenêtre" class="btn_close" src="/static/images/close_pop.png"></a>
+      <h2>Changez votre mot de passe</h2>
+      <form action="/admin/updatememberpassword/<%= member.userID %>" method="post" class="mt-5">
+        <div class="form-group">
+          <div id="conteneur-field-start">
+            <label for="password1">Nouveau mot de passe :</label>
+            <input type="text" class="form-field" id="password1" name="password1" >
+          </div>
+          <div id="conteneur-field-start">
+            <label for="password2">Confirmez le mot de passe :</label>
+            <input type="text" class="form-field" id="password2" name="password2" >
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Modifier</button>
+      </form>
+  </div>
+</div>
+<div id="overlay2">
+  <div class="popup_block">
+      <a class="close" href="#noWhere"><img alt="Fermer" title="Fermer la fenêtre" class="btn_close" src="/static/images/close_pop.png"></a>
+      <h2>Supprimer ce compte</h2>
+      <form action="/admin/deletemember/<%= member.userID %>" method="post" class="mt-5" >
+        <input type="hidden" name="id" value="{{member.id}}">
+        <button type="submit" class="btn btn-danger">Supprimer</button>
+    </form>
+  </div>
+</div>
+<div id="conteneur-field-start">
+  <label for="change-password">Mot de passe :</label>
+  <p><a href="#overlay1" id="change-password" class="btn btn-warning">Changer le password</a></p>
+</div>
+<div id="conteneur-field-start">
+  <label for="change-password">Etat du compte :</label>
+  <p><a href="#overlay2" class="btn btn-danger">Supprimer le compte</a></p>
+
+</div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>

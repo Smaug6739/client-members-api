@@ -1,0 +1,59 @@
+<!--<div style="text-align:center">
+    <a href="/" class="btn btn-primary mt-3" id="nav-button-home">Accueil</a>
+    <a href="/member/login" class="btn btn-primary mt-3" id="nav-button-login">Login</a>
+</div>-->
+<!--<link href="http://fr.allfont.net/allfont.css?fonts=pacifico" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+<link href="https://fonts.googleapis.com/css?family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">-->
+<!--navbar fixed-top-->
+<nav id="menu"class="navbar navbar-expand-md navbar-dark" style="background-color:#002f46">
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse stroke" id="navbarCollapse">
+        <ul class="navbar-nav ml-auto" style="font-size:98%;">
+            <li class="nav-li" class="nav-item">
+                <a class="nav-link text-white" href="/">ACCUEIL</a>
+            </li>
+            <% if(userConnected.auth === true){ %>
+            <li id="menu-compte"class="nav-li">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                         Mon compte
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/member/account">Profil</a></li>
+                        <li><a class="dropdown-item" href="/member/edit">Paramètres</a></li>
+                        <% if(userConnected.auth === true && userConnected.userPermissions >= 3){ %>
+                        <li><a class="dropdown-item" href="/admin">Admin</a></li>
+                        <% } %>
+                        <li role="separator" class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/member/disconnection">Déconnexion</a></li>
+                    </ul>
+                </div>
+            </li>
+            <% } else if(!userConnected || !userConnected.auth) { %>
+            <li class="nav-li" class="nav-item">
+                <a class="nav-link text-white" href="/member/login">LOGIN</a>
+            </li>
+            <li class="nav-li" class="nav-item">
+                <a class="nav-link text-white" href="/member/register">INSCRIPTION</a>
+            </li>
+            <% } %>
+            <li>
+            <%  if(userConnected.auth === true && userConnected.userAvatar){ %>
+                <img id="avatar" src="/uploads/avatars/<%= userConnected.userAvatar %>">
+            <% } %>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+        
+
+
+
+

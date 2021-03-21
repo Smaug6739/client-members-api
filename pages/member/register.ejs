@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script type="text/javascript" src="/static/js/index.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- CSS FILES -->
+    <link  rel="stylesheet" href="/static/css/main.css">
+    <title>API Members</title>
+  </head>
+  <body>
+    <%- include ('../include/nav.ejs'); -%>
+    <div id="form-inscription">
+      <h1 class="mb-5 text-center">S'inscrire :</h1>
+      <form action="/member/register" method="post">
+            <div class="form-group">
+                <fieldset class="form-group">
+                    <legend>Vos identifiants</legend>
+                    <label for="pseudo">Pseudo : *</label>
+                    <input type="text" class="form-control" id="pseudo" name="pseudo">
+                    <label for="password1">Mot de passe : *</label>
+                    <input type="text" class="form-control" id="password1" name="password1">
+                    <label for="password2">Confirmez le mot de passe : *</label>
+                    <input type="text" class="form-control" id="password2" name="password2">
+                </fieldset>
+                <fieldset class="form-group">
+                    <legend>Vos informations</legend>
+                    <label for="lastName">Nom :</label>
+                    <input type="text" class="form-control" id="lastName" name="lastName">
+                    <label for="firstName">Prénom :</label>
+                    <input type="text" class="form-control" id="firstName" name="firstName">
+                    <label for="age">Age : *</label>
+                    <input type="text" class="form-control" id="age" name="age">
+                    <label for="email">Email : *</label>
+                    <input type="text" class="form-control" id="email" name="email">
+                    <label for="phoneNumber">Téléphone :</label>
+                    <input type="text" class="form-control" id="phoneNumber" name="phoneNumber">
+                </fieldset>
+                <button type="submit" class="btn btn-primary">Inscription</button>
+            </div>
+      </form>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>

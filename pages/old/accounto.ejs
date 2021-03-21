@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--<script type="text/javascript" src="/static/js/account.js"></script>-->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>API Members</title>
+  </head>
+  <body class="p-5">
+    <h1 class="mb-5 text-center">Espace membre</h1>
+    <% if(userConnected === 'admin'){ %>
+      <%- include ('include/nav/navadmin.ejs'); -%>
+    <% } else if(userConnected === 'member'){ %>
+      <%- include ('include/nav/navmember.ejs'); -%>
+    <% } else{ %>
+      <%- include ('include/nav/nav.ejs'); -%>
+    <% } %> 
+
+    <div id="avatar">
+      <% if(member.avatar) { %> 
+        <img src="/uploads/avatar/<%= member.avatar %>">
+      <% } else { %> 
+        <img src="/uploads/default/avatar.png">
+      <% } %>
+    </div>
+      
+      </style>
+    <form id ="form1" action="/member/<%= member.userID %>/update" method="post">
+        <div class="form-group">
+            <label for="pseudo">Pseudo</label>
+            <input type="text" class="form-control" id="pseudo" name="pseudo" value="<%= member.pseudo %>" >
+            <label for="pseudo">Nom</label>
+            <input type="text" class="form-control" id="lastName" name="lastName" value="<%= member.lastName %>" >
+            <label for="pseudo">Prénom</label>
+            <input type="text" class="form-control" id="firstName" name="firstName" value="<%= member.firstName %>" >
+            <label for="pseudo">Age</label>
+            <input type="text" class="form-control" id="age" name="age" value="<%= member.age %>" >
+            <label for="pseudo">Adresse mail</label>
+            <input type="text" class="form-control" id="email" name="email" value="<%= member.email %>" >
+            <label for="pseudo">Téléphone</label>
+            <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" value="<%= member.phoneNumber %>" >
+        </div>
+
+  <button type="submit" class="btn btn-primary">Modifier</button>
+</form>
+<form action="/member/<%= member.userID %>/delete" method="post" class="mt-5" id="form2">
+    <input type="hidden" name="id" value="{{member.id}}">
+      <button type="submit" class="btn btn-primary">Supprimer votre compte</button>
+
+</form>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>

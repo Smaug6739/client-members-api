@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Rasp-Home</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+        <link href="https://fonts.googleapis.com/css?family=Anton|Dancing+Script|Exo|Lobster|Macondo+Swash+Caps|Pacifico|Shadows+Into+Light&display=swap" rel="stylesheet">
+    </head>
+
+    <body class='p-5'>
+        <h1 class="mb-5 text-center">API de membres login</h1>
+        <div style="text-align:center;">
+            <a href="/" class="btn btn-primary mt-3" id="nav-button-home">Accueil</a>
+            <a href="/account" class="btn btn-primary mt-3" id="nav-button-account">Compte</a>
+            <a href="/login" class="btn btn-primary mt-3" id="nav-button-login">Login</a>
+        </div>
+
+    <section class="container-fluid pl-0 pr-0">
+
+        <section class="col-xl-12 text-center">
+
+            <form action="/login" method="post" class="text-center pt-4 col-sm-4 mx-auto mt-5 d-flex flex-column justify-content-around align-items-center">
+                <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+                <label for="in_login" class="sr-only">Login</label>
+                <input type="text" id="in_login" class="form-control mb-3" placeholder="pseudo" required="" autofocus="" name="pseudo">
+                <label for="in_pass" class="sr-only">Pass</label>
+                <input type="password" id="in_pass" class="form-control mb-3" placeholder="Password" required="" name="pass">
+                <button class="btn btn-lg btn-success btn-block" type="submit" name="submit">Login</button>
+            </form>
+
+        </section><!-- /.container -->
+    </section>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    
+    </body>
+</html>

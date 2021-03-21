@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+    <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Rasp-Home</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+        <link href="https://fonts.googleapis.com/css?family=Anton|Dancing+Script|Exo|Lobster|Macondo+Swash+Caps|Pacifico|Shadows+Into+Light&display=swap" rel="stylesheet">
+        <script src="/static/css/test.css"></script>
+
+    </head>
+    <body>
+<h1>Menu déroulant sticky HTML et CSS avec flexbox</h1>
+<nav>
+  <ul>
+    <li class="deroulant"><a href="#">Cours Complets &ensp;</a>
+      <ul class="sous">
+        <li><a href="#">Cours HTML et CSS</a></li>
+        <li><a href="#">Cours JavaScript</a></li>
+        <li><a href="#">Cours PHP et MySQL</a></li>
+      </ul>
+    </li>
+    <li class="deroulant"><a href="#">Articles &ensp;</a>
+      <ul class="sous">
+        <li><a href="#">CSS display</a></li>
+        <li><a href="#">CSS position</a></li>
+        <li><a href="#">CSS float</a></li>
+      </ul>
+    </li>
+    <li><a href="#">Contact</a></li>
+    <li><a href="#">A propos</a></li>
+  </ul>
+</nav>
+
+<div class="conteneur">
+  <p>Du contenu sous le menu</p>
+</div>
+</body>

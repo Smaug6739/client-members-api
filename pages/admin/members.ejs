@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--<script type="text/javascript" src="/static/js/admin.js"></script>-->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/admin/members.css">
+    <script src="/static/js/admin/members.js"></script>
+
+    <title>API Members</title>
+  </head>
+  <body>
+    <%- include ('../include/nav.ejs'); -%>
+    <h1 class="mb-5 text-center">Tous les membres</h1>
+<div id="table-members">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Avatar</th>
+        <th scope="col">Pseudos</th>
+        <th scope="col">Date d'inscription</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <%  members.forEach(element => { %>
+      <%  const account_date = new Date(parseInt(element.account_date)) %>
+      <%  var months = ['1','2','3','4','5','6','7','8','9','10','11','12'];  %>
+      <%  const year = account_date.getFullYear() %>
+      <%  const month = months[account_date.getMonth()] %>
+      <%  const date = account_date.getDate() %>
+            <tr>
+            <td> <img src="/uploads/avatars/<%=element.avatar%>" id="avatar"></td>
+            <td> <%= element.pseudo  %> </td>
+            <td> <%= `${date}/${month}/${year}`  %> </td>
+            <td> <a class="btn btn-primary mt-3"href="/admin/updatepage/<%=element.userID%>">Modiffier </a> <a class="btn btn-primary mt-3"href="/admin/updatepage/<%=element.userID%>">Supprimer </a></td>
+            </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
+  <div id="center">
+    <a href="#" class="btn btn-info" id="precedent">< Précédent</a>
+    <a href="#" class="btn btn-info" id="suivant">Suivant ></a>
+  </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>
