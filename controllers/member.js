@@ -31,14 +31,7 @@ exports.postRegister = (req, res) => {
                     userConnected: statusUser(req.session),
                     error: responce.data.message
                 })
-            } else if (responce.data.status === 'success') {
-                req.session.user = {
-                    userID: responce.data.result.userID,
-                    userPermissions: responce.data.result.userPermissions,
-                    token: responce.data.result.token,
-                    userAvatar: responce.data.result.userAvatar || config.defaultAvatar
-                }
-                res.redirect('/member/login')
+            } else if (responce.data.status === 'success') res.redirect('/member/login')
             };
         })
         .catch((error) => {
