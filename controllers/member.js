@@ -32,7 +32,6 @@ exports.postRegister = (req, res) => {
                     error: responce.data.message
                 })
             } else if (responce.data.status === 'success') res.redirect('/member/login')
-            };
         })
         .catch((error) => {
             res.render(path.join(__dirname, '../pages/error.ejs'), {
