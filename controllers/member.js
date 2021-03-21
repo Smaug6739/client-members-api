@@ -15,15 +15,15 @@ exports.getRegister = (req, res) => {
 }
 
 exports.postRegister = (req, res) => {
-    axios.post(`${config.api.baseURL}members/login`, {
-        pseudo: req.body.pseudo,
-        password1: req.body.password1,
-        password2: req.body.password2,
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
+    axios.post(`${config.api.baseURL}members`, {
+        nickname: req.body.pseudo,
+        password: req.body.password1,
+        avatar: 'default.png',
+        first_name: req.body.firstName,
+        last_name: req.body.lastName,
         age: req.body.age,
         email: req.body.email,
-        phoneNumber: req.body.phoneNumber
+        phone_number: req.body.phoneNumber
     })
         .then((responce) => {
             if (responce.data.status === 'error') {
@@ -38,7 +38,7 @@ exports.postRegister = (req, res) => {
                     token: responce.data.result.token,
                     userAvatar: responce.data.result.userAvatar || config.defaultAvatar
                 }
-                res.redirect('/member/account')
+                res.redirect('/member/login')
             };
         })
         .catch((error) => {
@@ -65,7 +65,6 @@ exports.postLogin = (req, res) => {
         password: req.body.pass
     })
         .then(responce => {
-            console.log(responce)
             if (responce.data.status === "success") {
                 req.session.user = {
                     userID: responce.data.result.user.id,
@@ -145,7 +144,7 @@ exports.updateMember = (req, res) => {
     let file = "";
     if (req.file && req.file.filename) file = req.file.filename
     axios.put(`${config.api.baseURL}members/${req.params.id}`, {
-        pseudo: req.body.pseudo || "",
+        nickname: req.body.pseudo || "",
         avatar: file || "",
         first_name: req.body.firstName || "",
         last_name: req.body.lastName || "",

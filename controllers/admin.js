@@ -1,5 +1,6 @@
 const axios = require('axios')
 const path = require('path');
+const config = require('../config.js');
 const { statusUser } = require('../functions');
 exports.getIndex = (req, res) => {
     res.render(path.join(__dirname, '../pages/admin/index.ejs'), {
@@ -12,9 +13,9 @@ exports.getInfos = (req, res) => {
     })
 }
 exports.getMembers = (req, res) => {
-    axios.get(`${config.api.baseURL}/all/${req.params.page}`, {
+    axios.get(`${config.api.baseURL}members/all/${req.params.page}`, {
         //headers : { 'x-access-token' : req.session.user.token}
-        headers: { 'Authorization': `token ${req.session.user.token}` }
+        headers: { 'Authorization': `${req.session.user.userID} ${req.session.user.token}` }
     })
         .then((responce) => {
             if (responce.data.status === 'success') {
@@ -39,8 +40,9 @@ exports.getMembers = (req, res) => {
 }
 
 exports.getUpdatePage = (req, res) => {
-    axios.get(`${config.api.baseURL}/${req.params.id}`, {
-        headers: { 'Authorization': `token ${req.session.user.token}` },
+    console.log(req.params)
+    axios.get(`${config.api.baseURL}members/${req.params.id}`, {
+        headers: { 'Authorization': `${req.session.user.userID} ${req.session.user.token}` },
     })
         .then((responce) => {
             res.render(path.join(__dirname, '../pages/admin/adminupdate.ejs'), {
@@ -58,17 +60,17 @@ exports.getUpdatePage = (req, res) => {
 
 
 exports.postUpdateMember = (req, res) => {
-    axios.put(`${config.api.baseURL}/${req.params.id}`, {
-        pseudo: req.body.pseudo,
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
+    axios.put(`${config.api.baseURL}members/${req.params.id}`, {
+        nickname: req.body.pseudo,
+        first_name: req.body.firstName,
+        last_name: req.body.lastName,
         age: req.body.age,
         email: req.body.email,
-        phoneNumber: req.body.phoneNumber
+        phone_number: req.body.phoneNumber
     },
         {
             //headers : { 'x-access-token' : req.session.user.token}
-            headers: { 'Authorization': `token ${req.session.user.token}` },
+            headers: { 'Authorization': `${req.session.user.userID} ${req.session.user.token}` },
 
         })
         .then((responce) => {
@@ -87,13 +89,12 @@ exports.postUpdateMember = (req, res) => {
         })
 }
 exports.postUpdateMemberPassword = (req, res) => {
-    axios.put(`${config.api.baseURL}/${req.params.id}/password`, {
-        password1: req.body.password1,
-        password2: req.body.password2,
+    axios.put(`${config.api.baseURL}members/${req.params.id}`, {
+        password: req.body.password2,
     },
         {
             //headers : { 'x-access-token' : req.session.user.token}
-            headers: { 'Authorization': `token ${req.session.user.token}` },
+            headers: { 'Authorization': `${req.session.user.userID} ${req.session.user.token}` },
 
         })
         .then((responce) => {
@@ -113,11 +114,12 @@ exports.postUpdateMemberPassword = (req, res) => {
 }
 
 exports.postDeleteMember = (req, res) => {
-    axios.delete(`${config.api.baseURL}/${req.params.id}/admin`, {
+    axios.delete(`${config.api.baseURL}members/${req.params.id}`, {
         //headers : { 'x-access-token' : req.session.user.token}
-        headers: { 'Authorization': `token ${req.session.user.token}` },
+        headers: { 'Authorization': `${req.session.user.userID} ${req.session.user.token}` },
     })
         .then((responce) => {
+            console.log(responce)
             if (responce.data.status === 'error') {
                 res.render(path.join(__dirname, '../pages/error.ejs'), {
                     userConnected: statusUser(req.session),
