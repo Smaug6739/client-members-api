@@ -60,7 +60,7 @@ exports.getLogin = (req, res) => {
 }
 
 exports.postLogin = (req, res) => {
-    axios.post(`${config.api.baseURL}members/login`, {
+    axios.post(`${config.api.baseURL}members/auth`, {
         email: req.body.email,
         password: req.body.pass
     })

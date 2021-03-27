@@ -11,7 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.1",
-    "babel-register": "^6.26.0",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "express-mysql-session": "^2.1.5",

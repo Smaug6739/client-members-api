@@ -7,14 +7,10 @@ exports.getIndex = (req, res) => {
         userConnected: statusUser(req.session),
     })
 }
-exports.getInfos = (req, res) => {
-    res.render(path.join(__dirname, '../pages/admin/infos.ejs'), {
-        userConnected: statusUser(req.session),
-    })
-}
+
 exports.getMembers = (req, res) => {
+    if (!req.user.permissions.includes('ADMINISTRATOR') && !req.user.permissions.includes('VIEW_MEMBERS')) return res.status(401).redirect('/')
     axios.get(`${config.api.baseURL}members/all/${req.params.page}`, {
-        //headers : { 'x-access-token' : req.session.user.token}
         headers: { 'Authorization': `${req.session.user.userID} ${req.session.user.token}` }
     })
         .then((responce) => {
@@ -40,7 +36,7 @@ exports.getMembers = (req, res) => {
 }
 
 exports.getUpdatePage = (req, res) => {
-    console.log(req.params)
+    if (!req.user.permissions.includes('ADMINISTRATOR') && !req.user.permissions.includes('UPDATE_MEMBERS')) return res.status(401).redirect('/')
     axios.get(`${config.api.baseURL}members/${req.params.id}`, {
         headers: { 'Authorization': `${req.session.user.userID} ${req.session.user.token}` },
     })
@@ -60,6 +56,7 @@ exports.getUpdatePage = (req, res) => {
 
 
 exports.postUpdateMember = (req, res) => {
+    if (!req.user.permissions.includes('ADMINISTRATOR') && !req.user.permissions.includes('UPDATE_MEMBERS')) return res.status(401).redirect('/')
     axios.put(`${config.api.baseURL}members/${req.params.id}`, {
         nickname: req.body.pseudo,
         first_name: req.body.firstName,
@@ -69,9 +66,7 @@ exports.postUpdateMember = (req, res) => {
         phone_number: req.body.phoneNumber
     },
         {
-            //headers : { 'x-access-token' : req.session.user.token}
             headers: { 'Authorization': `${req.session.user.userID} ${req.session.user.token}` },
-
         })
         .then((responce) => {
             if (responce.data.status === 'error') {
@@ -89,13 +84,12 @@ exports.postUpdateMember = (req, res) => {
         })
 }
 exports.postUpdateMemberPassword = (req, res) => {
+    if (!req.user.permissions.includes('ADMINISTRATOR') && !req.user.permissions.includes('UPDATE_MEMBERS')) return res.status(401).redirect('/')
     axios.put(`${config.api.baseURL}members/${req.params.id}`, {
         password: req.body.password2,
     },
         {
-            //headers : { 'x-access-token' : req.session.user.token}
             headers: { 'Authorization': `${req.session.user.userID} ${req.session.user.token}` },
-
         })
         .then((responce) => {
             if (responce.data.status === 'error') {
@@ -112,14 +106,12 @@ exports.postUpdateMemberPassword = (req, res) => {
             })
         })
 }
-
 exports.postDeleteMember = (req, res) => {
+    if (!req.user.permissions.includes('ADMINISTRATOR') && !req.user.permissions.includes('DELETE_MEMBERS')) return res.status(401).redirect('/')
     axios.delete(`${config.api.baseURL}members/${req.params.id}`, {
-        //headers : { 'x-access-token' : req.session.user.token}
-        headers: { 'Authorization': `${req.session.user.userID} ${req.session.user.token}` },
+        headers: { 'Authorization': `${req.session.user.userID} ${req.session.user.token}` }
     })
         .then((responce) => {
-            console.log(responce)
             if (responce.data.status === 'error') {
                 res.render(path.join(__dirname, '../pages/error.ejs'), {
                     userConnected: statusUser(req.session),
