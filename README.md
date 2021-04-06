@@ -20,4 +20,4 @@ If you want to contribute to the project, report bugs or suggest improvements yo
 
 ## Permissions
 
-This project has an <a href="./LICENSE"> Apache License Version 2.0 </a>
+This project has an <a href="./LICENSE"> Apache License 2.0 </a>
