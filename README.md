@@ -1,7 +1,6 @@
 # Members API website
 This site is an example of using the [Members API](https://github.com/SmaugDev/members-api).
 
-
 ## How to install
 
 1. Clone the repo.
